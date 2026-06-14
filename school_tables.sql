@@ -1,6 +1,27 @@
 create database student_tables;
 use student_tables;
 
+-- dropped all the tables to make changes to the tables
+drop table if exists students;
+drop table if exists student_contacts;
+drop table if exists classes;
+drop table if exists subjects;
+drop table if exists staff;
+drop table if exists class_teacher;
+drop table if exists subject_teacher;
+drop table if exists notices;
+drop table if exists exam_results;
+drop table if exists exams;
+drop table if exists attendance;
+drop table if exists payment_receipts;
+drop table if exists payments;
+drop table if exists fee_structure;
+drop table if exists fee_types;
+drop table if exists terms;
+drop table if exists notices;
+drop table if exists books;
+drop table if exists book_loans;
+
 -- student table
 create table students( student_id int auto_increment primary key, student_number varchar(20), names varchar(50), gender varchar(10),
  date_of_birth date, class varchar(30), enrollment_date date, status_of_student varchar(20));
@@ -65,9 +86,9 @@ create table terms(term_name varchar(20), academic_year year,
  start_date date, end_date date, active_status varchar(20));
  
 insert into terms values
-('Term I', 2025, '2025-02-05', '2025', 'Yes'),
-('Term II', 2025, '2025-05-27', '2025', 'Yes'),
-('Term III', 2025, '2025-09-15', '2025', 'Yes');
+('Term I', 2025, '2025-02-05', '2025-04-25', 'Yes'),
+('Term II', 2025, '2025-05-27', '2025-08-15', 'Yes'),
+('Term III', 2025, '2025-09-15', '2025-11-30', 'Yes');
 
 select *  from terms;	
 
@@ -225,14 +246,14 @@ type enum('End of Term', 'Continuous Assessment', 'Mock', 'UNEB'),
 term_name varchar(30));
 
 insert into exams values
-('Term I Exams','End of Term','Term I'),
-('Term II Exams','End of Term','Term II'),
-('Term III Exams','End of Term','Term III'),
-('CAT 1','Continuous Assessment','Term I'),
-('CAT 2','Continuous Assessment','Term II'),
-('CAT 3','Continuous Assessment','Term III'),
-('Mock Exams','Mock','Term III'),
-('UNEB 2026','UNEB','Term III');
+(1, 'Term I Exams','End of Term','Term I'),
+(2, 'Term II Exams','End of Term','Term II'),
+(3, 'Term III Exams','End of Term','Term III'),
+(4, 'CAT 1','Continuous Assessment','Term I'),
+(5, 'CAT 2','Continuous Assessment','Term II'),
+(6, 'CAT 3','Continuous Assessment','Term III'),
+(7, 'Mock Exams','Mock','Term III'),
+(8, 'UNEB 2026','UNEB','Term III');
 
   select * from exams;
 
@@ -247,12 +268,12 @@ foreign key (subject_code) references subjects(subject_code),
 foreign key (exam_id)      references exams(exam_id));
 
 insert into exam_results values
-(1, 'MTH', 2, 85, 100, 'A'), 
-(2, 'ENG', 3, 72, 100, 'B'), 
-(3, 'BIO', 4, 91, 100, 'A'), 
-(4, 'MTH', 5, 64, 100, 'C'), 
-(5, 'PHY', 6, 78, 100, 'B'), 
-(6, 'ENG', 7, 88, 100, 'A'); 
+(1, 1, 'MTH', 2, 85, 100, 'A'), 
+(2, 2, 'ENG', 3, 72, 100, 'B'), 
+(3, 3, 'BIO', 4, 91, 100, 'A'), 
+(4, 4, 'MTH', 5, 64, 100, 'C'), 
+(5, 5, 'PHY', 6, 78, 100, 'B'), 
+(6, 6, 'ENG', 7, 88, 100, 'A'); 
   
   select * from exam_results;
   
@@ -271,17 +292,18 @@ create table books(ISBN varchar(13) primary key, title varchar(80),
  select * from books;
  
 -- book_loans table 
-create table book_loans(student_id int, loan_date date, due_date date, 
+create table book_loans(student_id int, ISBN varchar(13), loan_date date, due_date date, 
 return_date date, fine_amount decimal(10,2),
-foreign key (student_id) references students(student_id));
+foreign key (student_id) references students(student_id),
+foreign key (ISBN) references books(ISBN));
 
 insert into book_loans values
-(1 ,'2026-01-15','2026-01-29','2026-01-28',40000.00),
-(2, '2026-01-20','2026-02-03','2026-02-05',5000.00),
-(3, '2026-02-01','2026-02-15','2026-02-14',50000.00),
-(4,'2026-02-03','2026-02-17','2026-02-20',3000.00),
-(5, '2026-02-10','2026-02-24','2026-02-23',10000.00),
-(6, '2026-02-12','2026-02-26','2026-02-28',2000.00);
+(1 ,'9780131103627','2026-01-15','2026-01-29','2026-01-28',40000.00),
+(2, '9780201633610', '2026-01-20','2026-02-03','2026-02-05',5000.00),
+(3, '9780439023528','2026-02-01','2026-02-15','2026-02-14',50000.00),
+(4,'9780747532743','2026-02-03','2026-02-17','2026-02-20',3000.00),
+(5, '9780525555370', '2026-02-10','2026-02-24','2026-02-23',10000.00),
+(6, '9781108747462', '2026-02-12','2026-02-26','2026-02-28',2000.00);
 
 select * from book_loans;
  
