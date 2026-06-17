@@ -1,27 +1,6 @@
 create database student_tables;
 use student_tables;
 
--- dropped all the tables to make changes to the tables
-drop table if exists students;
-drop table if exists student_contacts;
-drop table if exists classes;
-drop table if exists subjects;
-drop table if exists staff;
-drop table if exists class_teacher;
-drop table if exists subject_teacher;
-drop table if exists notices;
-drop table if exists exam_results;
-drop table if exists exams;
-drop table if exists attendance;
-drop table if exists payment_receipts;
-drop table if exists payments;
-drop table if exists fee_structure;
-drop table if exists fee_types;
-drop table if exists terms;
-drop table if exists notices;
-drop table if exists books;
-drop table if exists book_loans;
-
 -- student table
 create table students( student_id int auto_increment primary key, student_number varchar(20), names varchar(50), gender varchar(10),
  date_of_birth date, class varchar(30), enrollment_date date, status_of_student varchar(20));
