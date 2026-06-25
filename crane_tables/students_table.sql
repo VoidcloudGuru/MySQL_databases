@@ -1,8 +1,9 @@
 use crane_highschool;
+
 create table students(student_id int auto_increment primary key,student_aphabetic_order varchar(10),
 student_name varchar(80), student_age int, gender varchar(20), nationality varchar(30), 
 religion varchar(30), student_order varchar(20), student_class varchar(20));
--- drop table students;
+
 -- show columns from students;
 insert into students(student_aphabetic_order,student_name,student_age,gender,
 nationality,religion,student_order,student_class)
