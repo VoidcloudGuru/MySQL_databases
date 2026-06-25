@@ -2,8 +2,9 @@ create database student_tables;
 use student_tables;
 
 -- student table
-create table students( student_id int auto_increment primary key, student_number varchar(20), names varchar(50), gender varchar(10),
- date_of_birth date, class varchar(30), enrollment_date date, status_of_student varchar(20));
+create table students( student_id int auto_increment primary key, student_number varchar(20), 
+names varchar(50), gender varchar(10), date_of_birth date, class varchar(30), 
+enrollment_date date, status_of_student varchar(20));
  
  insert into students values
  (1, '012001', 'Nantumbwe Grace', 'Female', '2009-01-23', 'Senior one', '2026-02-20', 'active'),

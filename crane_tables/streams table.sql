@@ -1,4 +1,5 @@
 use crane_highschool;
+
 create table streams(student_id int, student_stream int, entry_year year, school_entry_year year,
 student_adm_number varchar(30),student_code varchar(30),
 color varchar(20),  current_school_term varchar(40),

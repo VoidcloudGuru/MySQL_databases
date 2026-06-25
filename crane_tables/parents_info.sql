@@ -1,4 +1,5 @@
 use crane_highschool;
+
 create table parents_info(student_id int, current_school_year year, expected_income decimal(10,2),
 received_income decimal(10,2), father_name varchar(50), 
 father_occupation varchar(30), father_alt_contact varchar(20), mother_name varchar(50),
